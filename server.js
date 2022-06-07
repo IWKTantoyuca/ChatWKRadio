@@ -1,6 +1,7 @@
 const path = require('path');
 const http = require('http');
 const express = require('express');
+const cors = require('cors');
 const socketio = require('socket.io');
 const formatMessage = require('./utils/messages');
 const {
@@ -11,6 +12,7 @@ const {
 } = require('./utils/users');
 
 const app = express();
+app.use(cors());
 const server = http.createServer(app);
 const io = socketio(server);
 
