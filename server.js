@@ -12,7 +12,12 @@ const {
 } = require('./utils/users');
 
 const app = express();
-app.use(cors());
+const corsOptions = {
+  origin: 'http://localhost:300',
+  credentials: true,
+  optionSuccesStatus: 200,
+};
+app.use(cors(corsOptions));
 const server = http.createServer(app);
 const io = socketio(server);
 
