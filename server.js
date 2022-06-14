@@ -20,7 +20,7 @@ const io = socketio(server, { cors: { origin: "*" } });
 // Set static folder
 app.use(express.static(path.join(__dirname, "public")));
 
-const botName = "WK Bot ";
+//const botName = "WK Bot ";
 
 // Run when client connects
 io.on("connection", (socket) => {
@@ -28,7 +28,7 @@ io.on("connection", (socket) => {
     const user = userJoin(socket.id, username, room);
 
     socket.join(user.room);
-
+    /*
     // Welcome current user
     socket.emit(
       "message",
@@ -42,6 +42,7 @@ io.on("connection", (socket) => {
         "message",
         formatMessage(botName, `${user.username} se ha unido al chat`)
       );
+*/
 
     // Send users and room info
     io.to(user.room).emit("roomUsers", {
@@ -62,10 +63,12 @@ io.on("connection", (socket) => {
     const user = userLeave(socket.id);
 
     if (user) {
-      io.to(user.room).emit(
+      /*
+    io.to(user.room).emit(
         "message",
         formatMessage(botName, `${user.username} ha dejado el chat`)
       );
+    */
 
       // Send users and room info
       io.to(user.room).emit("roomUsers", {
